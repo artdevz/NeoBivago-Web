@@ -1,0 +1,47 @@
+<form>
+
+    <input type="text"      class="form-control"    name="name"        [(ngModel)]="user.name"         (keyup.enter)="create()"     placeholder="Name">
+    <input type="email"     class="form-control"    name="email"       [(ngModel)]="user.email"        (keyup.enter)="create()"     placeholder="example@gmail.com">
+    <input type="password"  class="form-control"    name="password"    [(ngModel)]="user.password"     (keyup.enter)="create()"     placeholder="Password 8 - 32 characters">
+    <input type="text"      class="form-control"    name="cpf"         [(ngModel)]="user.cpf"          (keyup.enter)="create()"     placeholder="000.000.000-00">
+    <input type="date"      class="form-control"    name="birthday"    [(ngModel)]="user.birthday"     (keyup.enter)="create()">
+
+    <input type="button"    class="btn btn-primary"     value="Create"      *ngIf="buttons"     (click)="create()">
+    <input type="button"    class="btn btn-warning"     value="Edit"        *ngIf="!buttons"    (click)="update()">
+    <input type="button"    class="btn btn-danger"      value="Delete"      *ngIf="!buttons"    (click)="delete()">
+    <input type="button"    class="btn btn-secondary"   value="Cancel"      *ngIf="!buttons"    (click)="cancel()">
+
+</form>
+
+<p>{{user | json}}</p>
+
+<table class="table" *ngIf="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>CPF</th>
+            <th>Birthday</th>
+            <th>Role</th>
+            <th>Tools</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let u of userList; index as i">
+            <td>{{i + 1}}</td>
+            <td>{{u.id}}</td>
+            <td>{{u.name}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.password}}</td>
+            <td>{{u.cpf}}</td>
+            <td>{{u.birthday}}</td>
+            <td>{{u.role}}</td>
+            <td><button class="btn btn-success" (click)="select(i)">Select</button></td>
+            
+        </tr>
+    </tbody>
+</table>
