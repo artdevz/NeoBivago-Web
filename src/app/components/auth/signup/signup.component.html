@@ -1,0 +1,15 @@
+<div class="body">
+
+    <form>
+
+        <input type="text"      class="form-control"    name="name"        [(ngModel)]="user.name"         (keyup.enter)="signup()"     placeholder="Name">
+        <input type="email"     class="form-control"    name="email"       [(ngModel)]="user.email"        (keyup.enter)="signup()"     placeholder="example@gmail.com">
+        <input type="password"  class="form-control"    name="password"    [(ngModel)]="user.password"     (keyup.enter)="signup()"     placeholder="Password 8 - 32 characters">
+        <input type="text"      class="form-control"    name="cpf"         [(ngModel)]="user.cpf"          (keyup.enter)="signup()"     placeholder="000.000.000-00">
+        <input type="date"      class="form-control"    name="birthday"    [(ngModel)]="user.birthday"     (keyup.enter)="signup()">
+
+        <input type="button"    class="btn btn-primary"     value="Create" (click)="signup()">
+
+    </form>
+
+</div>
