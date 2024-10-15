@@ -1,25 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Reservation } from '../models/Reservation';
 import { Observable } from 'rxjs';
-import { Room } from '../models/Room';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoomService {
+export class ReservationService {
 
   http = inject(HttpClient)
 
-  private API:string = "http://localhost:8080/api/room";
+  private API:string = "http://localhost:8080/api/reservation";
 
   constructor() { }
 
-  create(obj: Room): Observable<Room> {
-    return this.http.post<Room>(this.API, obj);
+  create(obj: Reservation): Observable<Reservation> {
+    return this.http.post<Reservation>(this.API, obj);
   }
 
-  readAll(): Observable<Room[]> {
-    return this.http.get<Room[]>(this.API);
+  readAll(): Observable<Reservation[]> {
+    return this.http.get<Reservation[]>(this.API);
   }
 
   update() {}
@@ -27,5 +27,5 @@ export class RoomService {
   delete(id: string): Observable<string> {
     return this.http.delete<string>(this.API + "/" + id, {responseType: 'text' as 'json'});
   }
-
+  
 }

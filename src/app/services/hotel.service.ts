@@ -1,25 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Room } from '../models/Room';
+import { Hotel } from '../models/Hotel';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoomService {
+export class HotelService {
 
   http = inject(HttpClient)
 
-  private API:string = "http://localhost:8080/api/room";
+  private API:string = "http://localhost:8080/api/hotel";
 
   constructor() { }
 
-  create(obj: Room): Observable<Room> {
-    return this.http.post<Room>(this.API, obj);
+  create(obj: Hotel): Observable<Hotel> {
+    return this.http.post<Hotel>(this.API, obj);
   }
 
-  readAll(): Observable<Room[]> {
-    return this.http.get<Room[]>(this.API);
+  readAll(): Observable<Hotel[]> {
+    return this.http.get<Hotel[]>(this.API);
   }
 
   update() {}

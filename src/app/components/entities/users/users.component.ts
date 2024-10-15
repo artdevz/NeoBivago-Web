@@ -22,29 +22,32 @@ export class UsersComponent {
 
   constructor() {}
 
-  create():void {    
+  create() {  
+
     this.userService.create(this.user)
     .subscribe(returned => {      
       this.userList.push(returned);
-      this.user = new User();
-      alert("Success at Sign Up!");
+      this.user = new User();      
     });
+        
   }
 
-  readAll():void {
+  readAll() {
+
     this.userService.readAll().subscribe({
       
       next: userList => {
         this.userList = userList;
       },
       error: err => {
-        alert("Error!" + this.userList.length)
+        alert("Error at reading: " + this.userList.length)
       }
 
     });      
   }
 
-  update():void {
+  update() {
+
     this.table = false;
     this.buttons = false;
 
@@ -65,15 +68,20 @@ export class UsersComponent {
     })
   }
 
-  delete():void {
+  delete() {
+
     this.table = false;
     this.buttons = false;
     
     this.userService.delete(this.user.id).subscribe({
 
       next: msg => {
-        // this.userList.splice(this.user, 1);
         alert(msg);
+        this.userList.splice(1);
+
+        this.user = new User();
+        this.table = true;
+        this.buttons = true;
       },
       error: err => {
         alert(err + "Error at delete");
@@ -83,7 +91,7 @@ export class UsersComponent {
 
   }
 
-  select(position:number):void {
+  select(position:number) {
 
     this.user = this.userList[position];
 
@@ -92,7 +100,7 @@ export class UsersComponent {
 
   }
 
-  cancel():void {
+  cancel() {
 
     this.user = new User();
 

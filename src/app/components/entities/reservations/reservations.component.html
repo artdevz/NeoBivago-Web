@@ -1,1 +1,53 @@
-<p>reservations works!</p>
+<div class="body">
+
+    <form>
+
+        <input type="text"      class="form-control"    name="user"         [(ngModel)]="reservation.user"          (keyup.enter)="create()"     placeholder="User ID">
+        <input type="text"      class="form-control"    name="hotel"        [(ngModel)]="reservation.hotel"         (keyup.enter)="create()"     placeholder="Hotel ID">
+        <input type="text"      class="form-control"    name="room"         [(ngModel)]="reservation.room"          (keyup.enter)="create()"     placeholder="Room ID">
+        <input type="date"      class="form-control"    name="checkIn"      [(ngModel)]="reservation.checkIn"       (keyup.enter)="create()">
+        <input type="date"      class="form-control"    name="checkOut"     [(ngModel)]="reservation.checkOut"      (keyup.enter)="create()">    
+        <input type="number"    class="form-control"    name="nop"          [(ngModel)]="reservation.nop"           (keyup.enter)="create()"     placeholder="Number of People">    
+        <input type="number"    class="form-control"    name="price"        [(ngModel)]="reservation.price"         (keyup.enter)="create()"     placeholder="Total Price">    
+
+        <input type="button"    class="btn btn-primary"     value="Create"      *ngIf="buttons"     (click)="create()">
+        <input type="button"    class="btn btn-warning"     value="Edit"        *ngIf="!buttons"    (click)="update()">
+        <input type="button"    class="btn btn-danger"      value="Delete"      *ngIf="!buttons"    (click)="delete()">
+        <input type="button"    class="btn btn-secondary"   value="Cancel"      *ngIf="!buttons"    (click)="cancel()">
+
+    </form> 
+
+    <table class="table" *ngIf="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>User</th>
+                <th>Hotel</th>
+                <th>Room</th>
+                <th>Check-In</th>
+                <th>Check-Out</th>
+                <th>Number of People</th>
+                <th>Total Price</th>
+                <th>Tools</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let r of reservationList; index as i">
+                <td>{{i + 1}}</td>
+                <td>{{r.id}}</td>
+                <td>{{r.user}}</td>
+                <td>{{r.hotel}}</td>
+                <td>{{r.room}}</td>
+                <td>{{r.checkIn}}</td>
+                <td>{{r.checkOut}}</td>
+                <td>{{r.nop}}</td>
+                <td>{{r.price}}</td>
+                <td><button class="btn btn-success" (click)="select(i)">Select</button></td>
+                
+            </tr>
+        </tbody>
+    </table>
+
+</div>

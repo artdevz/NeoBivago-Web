@@ -5,6 +5,6 @@ export class Room {
     number!: number;
     capacity!: number;
     price!: number;
-    type: string = "";
+    type!: string;
 
 }

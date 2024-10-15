@@ -1,1 +1,47 @@
-<p>hotels works!</p>
+<div class="body">
+
+    <form>
+
+        <input type="text"      class="form-control"    name="owner"      [(ngModel)]="hotel.owner"     (keyup.enter)="create()"     placeholder="Owner ID">
+        <input type="text"      class="form-control"    name="name"       [(ngModel)]="hotel.name"      (keyup.enter)="create()"     placeholder="Hotel Name">
+        <input type="text"      class="form-control"    name="address"    [(ngModel)]="hotel.address"   (keyup.enter)="create()"     placeholder="Hotel Address">
+        <input type="text"      class="form-control"    name="city"       [(ngModel)]="hotel.city"      (keyup.enter)="create()"     placeholder="Hotel City">
+        <input type="number"    class="form-control"    name="score"      [(ngModel)]="hotel.score"     (keyup.enter)="create()"     placeholder="Score">    
+
+        <input type="button"    class="btn btn-primary"     value="Create"      *ngIf="buttons"     (click)="create()">
+        <input type="button"    class="btn btn-warning"     value="Edit"        *ngIf="!buttons"    (click)="update()">
+        <input type="button"    class="btn btn-danger"      value="Delete"      *ngIf="!buttons"    (click)="delete()">
+        <input type="button"    class="btn btn-secondary"   value="Cancel"      *ngIf="!buttons"    (click)="cancel()">
+
+    </form> 
+
+    <table class="table" *ngIf="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>ID</th>
+                <th>Owner</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>Score</th>
+                <th>Tools</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let h of hotelList; index as i">
+                <td>{{i + 1}}</td>
+                <td>{{h.id}}</td>
+                <td>{{h.owner}}</td>
+                <td>{{h.name}}</td>
+                <td>{{h.address}}</td>
+                <td>{{h.city}}</td>
+                <td>{{h.score}}</td>
+                <td><button class="btn btn-success" (click)="select(i)">Select</button></td>
+                
+            </tr>
+        </tbody>
+    </table>
+
+</div>
