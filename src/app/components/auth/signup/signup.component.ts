@@ -3,7 +3,7 @@ import { UsersComponent } from '../../entities/users/users.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../../models/User';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -18,13 +18,19 @@ export class SignupComponent {
   userList: User[] = [];
   userService = inject(UserService);
 
-  signup():void {    
-    this.userService.create(this.user)
-    .subscribe(returned => {      
-      this.userList.push(returned);
-      this.user = new User();
-      alert("Success at Sign Up!");
-    });
+  signup() {    
+    
+    // this.userService.create(this.user).subscribe({
+
+    //   next: msg => {
+    //     alert(msg);  
+    //   },      
+    //   error: err => {
+    //     alert("Error at creating user");
+    //   }
+          
+    // });
+
   }
 
 }

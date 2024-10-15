@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Room } from '../../../models/Room';
-import { RoomService } from '../../../services/room.service';
+import { RoomService } from '../../../services/room/room.service';
 
 @Component({
   selector: 'app-rooms',
@@ -24,10 +24,18 @@ export class RoomsComponent {
 
   create() {
 
-    this.roomService.create(this.room)
-    .subscribe(returned => {
-      this.roomList.push(returned);
-      this.room = new Room();
+    this.roomService.create(this.room).subscribe({
+      
+      next: msg => {
+        this.readAll();      
+        this.room = new Room();
+        alert(msg);        
+      },
+            
+      error: err => {
+        alert("Error at creating user" + err);
+      }
+
     });
 
   }

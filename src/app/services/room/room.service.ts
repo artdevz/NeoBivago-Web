@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Room } from '../models/Room';
+import { Room } from '../../models/Room';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ export class RoomService {
 
   constructor() { }
 
-  create(obj: Room): Observable<Room> {
-    return this.http.post<Room>(this.API, obj);
+  create(data: Room): Observable<string> {
+    return this.http.post<string>(this.API, data, {responseType: 'text' as 'json'});
   }
 
   readAll(): Observable<Room[]> {

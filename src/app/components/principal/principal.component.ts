@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { User } from '../../models/User';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../services/user/user.service';
 import { HeaderComponent } from "../layout/header/header.component";
 import { FooterComponent } from "../layout/footer/footer.component";
 import { RouterOutlet } from '@angular/router';
@@ -16,96 +16,96 @@ import { RouterOutlet } from '@angular/router';
 })
 export class PrincipalComponent {
 
-  user = new User();
-  userList: User[] = [];
-  userService = inject(UserService);
+  // user = new User();
+  // userList: User[] = [];
+  // userService = inject(UserService);
 
-  table:boolean = true;
-  buttons:boolean = true;
+  // table:boolean = true;
+  // buttons:boolean = true;
 
-  constructor() {}
+  // constructor() {}
 
-  create():void {    
-    this.userService.create(this.user)
-    .subscribe(returned => {
-      alert("Chegou em subscribe")
-      this.userList.push(returned);
-      this.user = new User();
-      alert("Success at Sign Up!");
-    });
-  }
+  // create():void {    
+  //   this.userService.create(this.user)
+  //   .subscribe(returned => {
+  //     alert("Chegou em subscribe")
+  //     this.userList.push(returned);
+  //     this.user = new User();
+  //     alert("Success at Sign Up!");
+  //   });
+  // }
 
-  readAll():void {
-    this.userService.readAll().subscribe({
+  // readAll():void {
+  //   this.userService.readAll().subscribe({
       
-      next: userList => {
-        this.userList = userList;
-      },
-      error: err => {
-        alert("Error!" + this.userList.length)
-      }
+  //     next: userList => {
+  //       this.userList = userList;
+  //     },
+  //     error: err => {
+  //       alert("Error!" + this.userList.length)
+  //     }
 
-    });      
-  }
+  //   });      
+  // }
 
-  update():void {
-    this.table = false;
-    this.buttons = false;
+  // update():void {
+  //   this.table = false;
+  //   this.buttons = false;
 
-    this.userService.update(this.user, this.user.id)
-    .subscribe(returned => {
+  //   this.userService.update(this.user, this.user.id)
+  //   .subscribe(returned => {
 
-      let position = this.userList.findIndex(obj => {
-        return obj.id == returned.id
-      });
+  //     let position = this.userList.findIndex(obj => {
+  //       return obj.id == returned.id
+  //     });
 
-      this.userList[position] = returned;
+  //     this.userList[position] = returned;
 
-      this.table = true;
-      this.buttons = true;
+  //     this.table = true;
+  //     this.buttons = true;
 
-      alert("Success at Update User!");
+  //     alert("Success at Update User!");
 
-    })
-  }
+  //   })
+  // }
 
-  delete():void {
-    this.table = false;
-    this.buttons = false;
+  // delete():void {
+  //   this.table = false;
+  //   this.buttons = false;
     
-    this.userService.delete(this.user.id).subscribe({
+  //   this.userService.delete(this.user.id).subscribe({
 
-      next: msg => {
-        alert(msg);
-      },
-      error: err => {
-        alert(err + "Error :(");
-      }
+  //     next: msg => {
+  //       alert(msg);
+  //     },
+  //     error: err => {
+  //       alert(err + "Error :(");
+  //     }
 
-    })
+  //   })
 
-  }
+  // }
 
-  select(position:number):void {
+  // select(position:number):void {
 
-    this.user = this.userList[position];
+  //   this.user = this.userList[position];
 
-    this.table = false;
-    this.buttons = false;
+  //   this.table = false;
+  //   this.buttons = false;
 
-  }
+  // }
 
-  cancel():void {
+  // cancel():void {
 
-    this.user = new User();
+  //   this.user = new User();
 
-    this.table = true;
-    this.buttons = true;
+  //   this.table = true;
+  //   this.buttons = true;
 
-  }
+  // }
 
-  ngOnInit() {
-    this.readAll();
-  }
+  // ngOnInit() {
+  //   this.readAll();
+  // }
 
 }

@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Hotel } from '../../../models/Hotel';
-import { HotelService } from '../../../services/hotel.service';
+import { HotelService } from '../../../services/hotel/hotel.service';
 
 @Component({
   selector: 'app-hotels',
@@ -24,10 +24,18 @@ export class HotelsComponent {
 
   create() {
 
-    this.hotelService.create(this.hotel)
-    .subscribe(returned => {
-      this.hotelList.push(returned);
-      this.hotel = new Hotel();
+    this.hotelService.create(this.hotel).subscribe({
+      
+      next: msg => {
+        this.readAll();      
+        this.hotel = new Hotel();
+        alert(msg);        
+      },
+            
+      error: err => {
+        alert("Error at creating user" + err);
+      }
+    
     });
 
   }

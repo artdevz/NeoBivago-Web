@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { User } from '../../../models/User';
-import { UserService } from '../../../services/user.service';
+import { UserService } from '../../../services/user/user.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -24,10 +24,18 @@ export class UsersComponent {
 
   create() {  
 
-    this.userService.create(this.user)
-    .subscribe(returned => {      
-      this.userList.push(returned);
-      this.user = new User();      
+    this.userService.create(this.user).subscribe({
+      
+      next: msg => {
+        this.user = new User();
+        this.readAll();      
+        alert(msg);        
+      },
+
+      error: err => {
+        alert("Error at creating user" + err);
+      }
+
     });
         
   }
@@ -50,20 +58,20 @@ export class UsersComponent {
 
     this.table = false;
     this.buttons = false;
+    
+    this.userService.update(new User(this.user.name), this.user.id).subscribe({
 
-    this.userService.update(this.user, this.user.id)
-    .subscribe(returned => {
+      next: msg => {
+        this.table = true;
+        this.buttons = true;
+        this.user = new User();
+        this.readAll();
+        alert(msg);
+      },
 
-      let position = this.userList.findIndex(obj => {
-        return obj.id == returned.id
-      });
-
-      this.userList[position] = returned;
-
-      this.table = true;
-      this.buttons = true;
-
-      alert("Success at Update User!");
+      error: err => {
+        alert(err + "Error at update");
+      }
 
     })
   }
@@ -76,13 +84,15 @@ export class UsersComponent {
     this.userService.delete(this.user.id).subscribe({
 
       next: msg => {
-        alert(msg);
         this.userList.splice(1);
-
-        this.user = new User();
+        
         this.table = true;
         this.buttons = true;
+        this.user = new User();
+        this.readAll();
+        alert(msg);
       },
+
       error: err => {
         alert(err + "Error at delete");
       }

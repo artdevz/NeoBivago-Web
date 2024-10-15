@@ -8,4 +8,10 @@ export class User {
     birthday!: Date;
     role!: string;
 
+    constructor(name?: string) { 
+        if(name) {
+            this.name = name;
+        }
+    }    
+
 }

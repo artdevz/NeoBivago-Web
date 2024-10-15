@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Reservation } from '../../../models/Reservation';
-import { ReservationService } from '../../../services/reservation.service';
+import { ReservationService } from '../../../services/reservation/reservation.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -24,10 +24,18 @@ export class ReservationsComponent {
 
   create() {
 
-    this.reservationService.create(this.reservation)
-    .subscribe(returned => {
-      this.reservationList.push(returned);
-      this.reservation = new Reservation();
+    this.reservationService.create(this.reservation).subscribe({
+      
+      next: msg => {
+        this.readAll();      
+        this.reservation = new Reservation();
+        alert(msg);        
+      },
+            
+      error: err => {
+        alert("Error at creating user" + err);
+      }
+
     });
 
   }
