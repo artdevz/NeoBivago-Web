@@ -1,0 +1,22 @@
+.body {
+    background-color: rgb(41, 41, 41);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 36px;
+    flex-direction: column;
+}
+
+.welcome {
+    color: aliceblue;
+    margin-top: 27px;
+}
+
+form {    
+    width: 500px;
+    margin: 30px auto;
+}
+
+input {
+    margin-bottom: 10px;
+}

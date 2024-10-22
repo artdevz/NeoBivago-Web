@@ -1,1 +1,15 @@
-<p>signin works!</p>
+<div class="body">
+
+    <div class="welcome">
+        <h3>Sign In to have full access to NeoBivago</h3>
+    </div>    
+
+    <form>
+
+        <input type="text"      class="form-control"    name="email"    [(ngModel)]="login.email"       (keyup.enter)="signIn()"     placeholder="example@gmail.com">
+        <input type="password"  class="form-control"    name="password" [(ngModel)]="login.password"    (keyup.enter)="signIn()"     placeholder="">
+        <input type="button"    class="btn btn-primary" value="Login"   (click)="signIn()">
+
+    </form>
+
+</div>

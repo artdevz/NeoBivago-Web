@@ -3,11 +3,11 @@
     <div class="brand"><h1>NeoBivago</h1></div>
 
     <div class="btn_header">
-        <button class="btn btn-success" (click)="relocate()">Sign Up</button>
-        <button class="btn btn-success">Sign In</button>
-        <button class="btn btn-primary">My Reservations</button>
-        <button class="btn btn-primary">Settings</button>
-        <button class="btn btn-secondary">Sign Out</button>
+        <button class="btn btn-success"     *ngIf="buttons"     (click)="relocateSignUp()">Sign Up</button>
+        <button class="btn btn-success"     *ngIf="buttons"     (click)="relocateSignIn()">Sign In</button>
+        <button class="btn btn-primary"     *ngIf="!buttons">My Reservations</button>
+        <button class="btn btn-primary"     *ngIf="!buttons">Settings</button>
+        <button class="btn btn-secondary"   *ngIf="!buttons">Sign Out</button>
     </div>    
 
 </div>
